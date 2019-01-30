@@ -1,0 +1,82 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#pragma once
+
+#include "Object.h"
+#include "UI/UIDefs.h"
+#include "Network/PacketDataStructures.h"
+#include "PlayModeManager.generated.h"
+
+//class URGameInstance;
+
+/**
+ * 
+ */
+UCLASS()
+class PROJECTR_API UPlayModeManager : public UObject
+{
+	GENERATED_BODY()
+	
+public:
+
+	void Initialize(/*URGameInstance* Instance*/);
+
+	//////////////////////////////////////////////////////////////////////////
+	// Common
+//	void PlayGameStart(const FPlay_Heroes_Info& PlayHeroInfo);
+	//////////////////////////////////////////////////////////////////////////
+
+
+	//////////////////////////////////////////////////////////////////////////
+	// Campaign
+	void CampignModeStart();
+
+	void CampaignModeEnd();
+	//////////////////////////////////////////////////////////////////////////
+	
+
+	//////////////////////////////////////////////////////////////////////////
+	// Raid
+	bool PlayModeRaidStart();
+	UFUNCTION()
+	void PlayModeRaidStartReply();
+
+	void PlayModeRaidEnd();
+	UFUNCTION()
+	void PlayModeRaidEndReply();
+	//////////////////////////////////////////////////////////////////////////
+
+
+	//////////////////////////////////////////////////////////////////////////
+	// Arena
+	void PlayModeArenaStart();
+	void PlayModeArenaEnd();
+	//////////////////////////////////////////////////////////////////////////
+	
+	//////////////////////////////////////////////////////////////////////////
+	// MirrorDungeon
+	//////////////////////////////////////////////////////////////////////////
+	void PlayModeMirrorDungeonStart();
+	void PlayModeMirrorDungeonEnd();
+
+	//////////////////////////////////////////////////////////////////////////
+	// Colosseum
+	void PlayModeColosseumStart();
+	void PlayModeColosseumEnd();
+	//////////////////////////////////////////////////////////////////////////
+
+		
+
+	
+	//TODO: Delete
+	bool bUseSweeper = false;
+
+	FORCEINLINE FPlay_Heroes_Info& GetPlayHeroInfo() { return CurrentPlayHeroInfo; }
+	void SetPlayHeroInfo(FPlay_Heroes_Info inPlayHeroInfo) { CurrentPlayHeroInfo = inPlayHeroInfo; }
+private:
+// 	UPROPERTY()
+// 	URGameInstance*		RGameInstance = nullptr;
+
+	//FPLAY_DECK			DeckInfo;
+	FPlay_Heroes_Info	CurrentPlayHeroInfo;
+};
